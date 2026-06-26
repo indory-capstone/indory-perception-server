@@ -35,6 +35,34 @@ http://127.0.0.1:8767
 
 ## Setup
 
+For no-model API contract evaluation, install only the FastAPI service
+dependencies:
+
+```bash
+sudo apt-get install -y python3-venv python3-pip
+python3 -m venv .venv-contract
+.venv-contract/bin/python -m pip install -U pip setuptools wheel
+.venv-contract/bin/python -m pip install -e .
+CONTROL_SERVER_DETECTION_PYTHON=.venv-contract/bin/python \
+CONTROL_SERVER_DETECTION_PROVIDER=not_configured ./run.sh
+```
+
+If `python3 -m venv` reports missing venv support on Ubuntu/Debian, install
+the same packages and rerun the venv commands:
+
+```bash
+sudo apt-get install -y python3-venv python3-pip
+```
+
+Check the contract server from another terminal:
+
+```bash
+curl http://127.0.0.1:8767/health
+curl http://127.0.0.1:8767/v1/contracts
+```
+
+For the full OCR/VLM runtime, install the model runtime dependencies:
+
 ```bash
 ./setup.sh
 ./run.sh
@@ -44,7 +72,9 @@ The default provider is `gz_compat`, which preserves the OCR/LLM behavior used
 by the Indory integration stack. For contract tests without model inference:
 
 ```bash
-CONTROL_SERVER_DETECTION_PROVIDER=not_configured ./run.sh
+CONTROL_SERVER_DETECTION_PROVIDER=not_configured \
+WAYBILL_OCR_REQUIRE_PADDLE=0 WAYBILL_OCR_USE_GPU=0 \
+./run.sh
 ```
 
 ## Configuration

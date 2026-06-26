@@ -9,9 +9,7 @@ cd "$ROOT"
 
 INDORY_OCR_PYTHON="${CONTROL_SERVER_DETECTION_PYTHON:-${INDORY_OCR_PYTHON:-${INDORY_OCR_LLM_PYTHON:-}}}"
 if [[ -z "$INDORY_OCR_PYTHON" ]]; then
-  if [[ -x "$GZ_NAV_SIM_ROOT/indoors-web/ros_adapter/venv/bin/python" ]]; then
-    INDORY_OCR_PYTHON="$GZ_NAV_SIM_ROOT/indoors-web/ros_adapter/venv/bin/python"
-  elif [[ -x "$ROOT/.venv/bin/python" ]]; then
+  if [[ -x "$ROOT/.venv/bin/python" ]]; then
     INDORY_OCR_PYTHON="$ROOT/.venv/bin/python"
   else
     INDORY_OCR_PYTHON="python3"

@@ -18,6 +18,22 @@ if ! command -v "$INDORY_OCR_BASE_PYTHON" >/dev/null 2>&1 && [[ ! -x "$INDORY_OC
   exit 1
 fi
 
+if ! "$INDORY_OCR_BASE_PYTHON" - <<'PY' >/dev/null 2>&1
+import ensurepip
+PY
+then
+  cat >&2 <<EOF
+Python venv support is not available for $INDORY_OCR_BASE_PYTHON.
+
+On Ubuntu/Debian, install it first:
+  sudo apt-get install -y python3-venv python3-pip
+
+Then rerun:
+  ./setup.sh
+EOF
+  exit 1
+fi
+
 if [[ ! -f "$INDORY_OCR_REQUIREMENTS" ]]; then
   echo "Missing lock file: $INDORY_OCR_REQUIREMENTS" >&2
   exit 1

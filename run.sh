@@ -26,6 +26,29 @@ if [[ -n "$INDORY_OCR_SETUP" && -f "$INDORY_OCR_SETUP" ]]; then
   set -u
 fi
 
+if ! "$INDORY_OCR_PYTHON" - <<'PY' >/dev/null 2>&1
+import fastapi
+import uvicorn
+import pydantic
+PY
+then
+  cat >&2 <<EOF
+Missing FastAPI runtime dependencies for $INDORY_OCR_PYTHON.
+
+For contract-only evaluation without OCR/VLM models:
+  python3 -m venv .venv-contract
+  .venv-contract/bin/python -m pip install -U pip setuptools wheel
+  .venv-contract/bin/python -m pip install -e .
+  CONTROL_SERVER_DETECTION_PYTHON=.venv-contract/bin/python \\
+  CONTROL_SERVER_DETECTION_PROVIDER=not_configured ./run.sh
+
+For the full OCR/VLM runtime:
+  ./setup.sh
+  CONTROL_SERVER_DETECTION_PYTHON=.venv/bin/python ./run.sh
+EOF
+  exit 1
+fi
+
 INDORY_OCR_VENV_ROOT="$(cd "$(dirname "$INDORY_OCR_PYTHON")/.." 2>/dev/null && pwd || true)"
 if [[ -n "$INDORY_OCR_VENV_ROOT" ]]; then
   for cuda_lib_dir in \
