@@ -134,9 +134,9 @@ license: other
 Indory waybill OCR benchmark dataset.
 
 This dataset contains resized waybill images and destination labels used to
-evaluate the `control-server-detection` `/v1/waybill/scan` API. The service's
+evaluate the `indory-perception-server` `/v1/waybill/scan` API. The service's
 internal Python package is still named `indory_ocr` for compatibility, but the
-public repository name is `control-server-detection`. The benchmark target is
+public repository name is `indory-perception-server`. The benchmark target is
 the delivery destination room/floor decision, not generic full-document OCR.
 
 ## Data Provenance and Privacy

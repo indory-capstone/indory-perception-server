@@ -522,7 +522,7 @@ def snapshot_hf_dataset(repo_id: str, revision: str | None) -> Path:
         from huggingface_hub import snapshot_download
     except Exception as exc:  # pragma: no cover - depends on optional package
         raise RuntimeError(
-            "huggingface_hub is required for hf: datasets; install control-server-detection[benchmark] "
+            "huggingface_hub is required for hf: datasets; install indory-perception-server[benchmark] "
             "or pip install huggingface-hub"
         ) from exc
 
@@ -1106,7 +1106,7 @@ def run_one(
     payload = {
         "request_id": request_id,
         "camera": args.camera,
-        "source": "control_server_detection.benchmark",
+        "source": "indory_perception_server.benchmark",
         "image_b64": image_b64(image),
         "image_format": image_format(image),
         "include_debug": bool(args.include_debug),
@@ -1172,7 +1172,7 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         description="Benchmark Indory waybill OCR+LLM destination extraction against labeled images.",
     )
     parser.add_argument("inputs", nargs="*", help="image files, directories, or glob patterns")
-    parser.add_argument("--url", default=default_url, help="Indory control-server-detection service URL")
+    parser.add_argument("--url", default=default_url, help="Indory perception service URL")
     parser.add_argument("--modes", type=parse_modes, default=parse_modes("waybill"))
     parser.add_argument("--out", type=Path, default=Path("benchmark") / "runs" / now_slug())
     parser.add_argument(

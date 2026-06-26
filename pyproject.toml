@@ -3,9 +3,9 @@ requires = ["setuptools>=69", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "control-server-detection"
+name = "indory-perception-server"
 version = "0.1.0"
-description = "Indory detection control server for OCR, waybill recognition, and semantic text-object inspection"
+description = "Indory perception server for OCR, waybill recognition, and semantic text-object inspection"
 readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "Apache-2.0" }
@@ -52,6 +52,7 @@ all = [
 ]
 
 [project.scripts]
+indory-perception-server = "indory_ocr.app:main"
 control-server-detection = "indory_ocr.app:main"
 indory-ocr = "indory_ocr.app:main"
 

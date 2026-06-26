@@ -52,7 +52,7 @@ class Settings:
             artifact_root=Path(
                 _env(
                     "CONTROL_SERVER_DETECTION_ARTIFACT_ROOT",
-                    default=os.environ.get("INDORY_OCR_ARTIFACT_ROOT", "/tmp/control_server_detection"),
+                    default=os.environ.get("INDORY_OCR_ARTIFACT_ROOT", "/tmp/indory_perception_server"),
                 )
             ),
             keep_artifacts=_bool_env(

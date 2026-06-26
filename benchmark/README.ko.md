@@ -1,6 +1,6 @@
 # benchmark
 
-`control-server-detection` FastAPI 서비스의 송장 OCR+LLM 목적지 추출이 실제 이미지에서
+`indory-perception-server` FastAPI 서비스의 송장 OCR+LLM 목적지 추출이 실제 이미지에서
 잘 도는지 확인하는 벤치 도구다.
 
 - `waybill`: `POST /v1/waybill/scan` OCR + Qwen/LLM 판단
@@ -13,14 +13,14 @@
 터미널 1:
 
 ```bash
-cd ~/control-server-detection
+cd ~/indory-perception-server
 ./run.sh
 ```
 
 터미널 2:
 
 ```bash
-cd ~/control-server-detection
+cd ~/indory-perception-server
 python3 benchmark/run.py
 ```
 

@@ -49,7 +49,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         provider_health = await provider.health()
         return {
             "ok": True,
-            "service": "control_server_detection",
+            "service": "indory_perception_server",
             "version": __version__,
             "provider": provider.name,
             "provider_health": provider_health,
@@ -214,7 +214,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
 
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     defaults = Settings.from_env()
-    parser = argparse.ArgumentParser(description="Run the Indory control-server-detection FastAPI service.")
+    parser = argparse.ArgumentParser(description="Run the Indory perception FastAPI service.")
     parser.add_argument("--host", default=defaults.host)
     parser.add_argument("--port", type=int, default=defaults.port)
     parser.add_argument("--provider", default=defaults.provider)
