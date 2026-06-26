@@ -109,4 +109,4 @@ captures, local logs, or credentials.
 
 ## License
 
-Add a project license before publishing this repository.
+This repository is licensed under Apache License 2.0. See [LICENSE](LICENSE).
