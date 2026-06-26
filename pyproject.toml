@@ -1,0 +1,59 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "control-server-detection"
+version = "0.1.0"
+description = "Indory detection control server for OCR, waybill recognition, and semantic text-object inspection"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "Apache-2.0" }
+classifiers = [
+  "License :: OSI Approved :: Apache Software License",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Topic :: Scientific/Engineering :: Image Recognition",
+]
+dependencies = [
+  "fastapi>=0.111",
+  "uvicorn[standard]>=0.30",
+  "pydantic>=2.7",
+  "numpy>=1.24",
+  "opencv-python>=4.8",
+  "Pillow>=10",
+]
+
+[project.optional-dependencies]
+ocr = [
+  "paddleocr>=3.6",
+  "paddlepaddle>=3.3",
+]
+waybill = [
+  "llama-cpp-python>=0.2",
+  "huggingface-hub>=0.23",
+]
+benchmark = [
+  "huggingface-hub>=0.23",
+]
+vlm = [
+  "torch",
+  "transformers>=5.3",
+  "accelerate>=1.13",
+]
+all = [
+  "paddleocr>=3.6",
+  "paddlepaddle>=3.3",
+  "llama-cpp-python>=0.2",
+  "huggingface-hub>=0.23",
+  "torch",
+  "transformers>=5.3",
+  "accelerate>=1.13",
+]
+
+[project.scripts]
+control-server-detection = "indory_ocr.app:main"
+indory-ocr = "indory_ocr.app:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
